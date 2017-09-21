@@ -89,8 +89,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (RLMSyncUser *)logInUserForCredentials:(RLMSyncCredentials *)credentials
                                   server:(NSURL *)url;
 
-/// Log in and/or retrieve the default administrator-privilege user that ships with ROS.
-- (RLMSyncUser *)getSharedPersistentAdminUserForURL:(NSURL *)url;
+/// Create an admin user. Note that the actual username of the user will have `_admin` appended to it.
+- (RLMSyncUser *)createAdminUserForURL:(NSURL *)url username:(NSString *)username;
 
 /// Add a number of objects to a Realm.
 - (void)addSyncObjectsToRealm:(RLMRealm *)realm descriptions:(NSArray<NSString *> *)descriptions;
