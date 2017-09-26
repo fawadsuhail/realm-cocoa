@@ -66,10 +66,10 @@ RLMIdentityProvider const RLMIdentityProviderCloudKit               = @"cloudkit
 }
 
 /// Intended only for testing use. Will only work if the ROS is started with the `debug` provider enabled.
-+ (instancetype)credentialsWithDebugUserID:(NSString *)userID {
++ (instancetype)credentialsWithDebugUserID:(NSString *)userID isAdmin:(BOOL)isAdmin {
     return [[self alloc] initWithCustomToken:userID
                                     provider:RLMIdentityProviderDebug
-                                    userInfo:@{}];
+                                    userInfo:@{kRLMSyncIsAdminKey: @(isAdmin)}];
 }
 
 + (instancetype)credentialsWithAccessToken:(RLMServerToken)accessToken identity:(NSString *)identity {

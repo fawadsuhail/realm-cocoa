@@ -55,6 +55,7 @@ extern NSString *const kRLMSyncDataKey;
 extern NSString *const kRLMSyncErrorJSONKey;
 extern NSString *const kRLMSyncErrorStatusCodeKey;
 extern NSString *const kRLMSyncIdentityKey;
+extern NSString *const kRLMSyncIsAdminKey;
 extern NSString *const kRLMSyncPasswordKey;
 extern NSString *const kRLMSyncPathKey;
 extern NSString *const kRLMSyncTokenKey;
@@ -63,6 +64,7 @@ extern NSString *const kRLMSyncProviderIDKey;
 extern NSString *const kRLMSyncRegisterKey;
 extern NSString *const kRLMSyncUnderlyingErrorKey;
 extern NSString *const kRLMSyncUserIDKey;
+
 
 /// Convert sync management object status code (nil, 0 and others) to
 /// RLMSyncManagementObjectStatus enum

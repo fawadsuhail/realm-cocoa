@@ -48,7 +48,7 @@
 @end
 
 @interface RLMSyncCredentials ()
-+ (instancetype)credentialsWithDebugUserID:(NSString *)userID;
++ (instancetype)credentialsWithDebugUserID:(NSString *)userID isAdmin:(BOOL)isAdmin;
 @end
 
 @interface RLMSyncSession ()
@@ -255,8 +255,7 @@ static NSURL *syncDirectoryForChildProcess() {
 }
 
 - (RLMSyncUser *)createAdminUserForURL:(NSURL *)url username:(NSString *)username {
-    NSString *actualUsername = [NSString stringWithFormat:@"%@_admin", username];
-    return [self logInUserForCredentials:[RLMSyncCredentials credentialsWithDebugUserID:actualUsername]
+    return [self logInUserForCredentials:[RLMSyncCredentials credentialsWithDebugUserID:username isAdmin:YES]
                                   server:url];
 }
 

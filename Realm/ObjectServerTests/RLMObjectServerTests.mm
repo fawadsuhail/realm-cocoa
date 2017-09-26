@@ -375,8 +375,7 @@
 /// A sync admin user should be able to retrieve information about other users.
 - (void)testRetrieveUserInfo {
     NSString *nonAdminUsername = @"meela@realm.example.org";
-    NSString *adminBaseUsername = @"jyaku";
-    NSString *adminFullUsername = [NSString stringWithFormat:@"%@_admin", adminBaseUsername];
+    NSString *adminUsername = @"jyaku";
     NSString *pw = @"p";
     NSURL *server = [RLMObjectServerTests authServerURL];
 
@@ -385,7 +384,7 @@
     RLMSyncUser *nonAdminUser = [self logInUserForCredentials:c1 server:server];
 
     // Create an admin user.
-    __unused RLMSyncUser *adminUser = [self createAdminUserForURL:server username:adminBaseUsername];
+    __unused RLMSyncUser *adminUser = [self createAdminUserForURL:server username:adminUsername];
 
     // Create another admin user.
     RLMSyncUser *userDoingLookups = [self createAdminUserForURL:server username:[[NSUUID UUID] UUIDString]];
@@ -408,14 +407,14 @@
 
     // Get the admin user's info.
     XCTestExpectation *ex2 = [self expectationWithDescription:@"should be able to get info about admin user"];
-    [userDoingLookups retrieveInfoForUser:adminFullUsername
+    [userDoingLookups retrieveInfoForUser:adminUsername
                          identityProvider:RLMIdentityProviderDebug
                                completion:^(RLMSyncUserInfo *info, NSError *err) {
                                    XCTAssertNil(err);
                                    XCTAssertNotNil(info);
                                    XCTAssertGreaterThan([info.accounts count], ((NSUInteger) 0));
                                    RLMSyncUserAccountInfo *acctInfo = [info.accounts firstObject];
-                                   XCTAssertEqualObjects(acctInfo.providerUserIdentity, adminFullUsername);
+                                   XCTAssertEqualObjects(acctInfo.providerUserIdentity, adminUsername);
                                    XCTAssertEqualObjects(acctInfo.provider, RLMIdentityProviderDebug);
                                    XCTAssertTrue(info.isAdmin);
                                    [ex2 fulfill];
@@ -437,7 +436,7 @@
 
     // Get info using user without admin privileges.
     XCTestExpectation *ex4 = [self expectationWithDescription:@"should fail for user without admin privileges"];
-    [nonAdminUser retrieveInfoForUser:adminFullUsername
+    [nonAdminUser retrieveInfoForUser:adminUsername
                      identityProvider:RLMIdentityProviderUsernamePassword
                            completion:^(RLMSyncUserInfo *info, NSError *err) {
                                XCTAssertNotNil(err);
