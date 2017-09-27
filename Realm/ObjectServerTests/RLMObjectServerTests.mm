@@ -255,7 +255,6 @@
                                                    server:[RLMObjectServerTests authServerURL]];
         XCTestExpectation *ex = [self expectationWithDescription:@"change password callback invoked"];
         [user changePassword:secondPassword completion:^(NSError * _Nullable error) {
-            // FIXME ROS 2.0: this endpoint is broken. Tracked in https://github.com/realm/ros/issues/273
             XCTAssertNil(error);
             [ex fulfill];
         }];
