@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (RLMSyncUser *)logInUserForCredentials:(RLMSyncCredentials *)credentials
                                   server:(NSURL *)url;
 
-/// Create an admin user. Note that the actual username of the user will have `_admin` appended to it.
+/// Create and log in an admin user.
 - (RLMSyncUser *)createAdminUserForURL:(NSURL *)url username:(NSString *)username;
 
 /// Add a number of objects to a Realm.
