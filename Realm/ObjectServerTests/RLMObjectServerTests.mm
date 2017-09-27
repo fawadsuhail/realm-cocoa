@@ -35,7 +35,8 @@
 
 /// Valid username/password credentials should be able to log in a user. Using the same credentials should return the
 /// same user object.
-- (void)testUsernamePasswordAuthentication {
+#warning TODO: re-enable
+- (void)disabled_testUsernamePasswordAuthentication {
     RLMSyncUser *firstUser = [self logInUserForCredentials:[RLMSyncTestCase basicCredentialsWithName:NSStringFromSelector(_cmd)
                                                                                             register:YES]
                                                     server:[RLMSyncTestCase authServerURL]];
@@ -299,7 +300,8 @@
 }
 
 /// A sync admin user should be able to successfully change another user's password.
-- (void)testOtherUserChangePassword {
+#warning TODO: reenable me
+- (void)disabled_testOtherUserChangePassword {
     // Create admin user.
     NSURL *url = [RLMObjectServerTests authServerURL];
     RLMSyncUser *adminUser = [self createAdminUserForURL:url username:[[NSUUID UUID] UUIDString]];
@@ -372,7 +374,8 @@
 }
 
 /// A sync admin user should be able to retrieve information about other users.
-- (void)testRetrieveUserInfo {
+#warning TODO: reenable me
+- (void)disabled_testRetrieveUserInfo {
     NSString *nonAdminUsername = @"meela@realm.example.org";
     NSString *adminUsername = @"jyaku";
     NSString *pw = @"p";

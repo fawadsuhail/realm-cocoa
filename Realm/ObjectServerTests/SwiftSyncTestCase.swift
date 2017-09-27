@@ -109,7 +109,8 @@ class SwiftSyncTestCase: RLMSyncTestCase {
         }
         SyncManager.shared.setSessionCompletionNotifier(basicBlock)
         let realm = try Realm(configuration: configuration)
-        _ = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(20))
+        let result = semaphore.wait(timeout: .now() + DispatchTimeInterval.seconds(20))
+        XCTAssertEqual(result, .success)
         return realm
     }
 
